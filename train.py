@@ -7,6 +7,7 @@ from dataset import DataGenerator
 from keras.optimizers import rmsprop
 from keras.constraints import maxnorm
 from keras.optimizers import SGD
+from keras.callbacks import ModelCheckpoint
 from utils import get_img_ids
 import random
 
@@ -48,10 +49,13 @@ decay = lrate/epochs
 sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
 model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
+checkpoint = ModelCheckpoint('./model.h5', monitor='val_loss', verbose=1, save_best_only=True, mode='min')
+callbacks_list = [checkpoint]
 
 # Train model on dataset
 model.fit_generator(generator=training_generator,
                     validation_data=validation_generator,
                     epochs = epochs,
                     use_multiprocessing=True,
-                    workers=6)
+                    workers=6,
+                    callbacks = callbacks_list)
