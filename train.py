@@ -50,7 +50,7 @@ sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
 model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
 # checkpoint
-filepath="{epoch:02d}.h5"
+filepath="human_attribute_model_{epoch:02d}.h5"
 checkpoint = ModelCheckpoint('./snapshots/'+filepath, monitor='val_loss', verbose=1, save_best_only=True, mode='min')
 callbacks_list = [checkpoint]
 
