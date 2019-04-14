@@ -8,7 +8,7 @@ The objective is to train a multi-label classifier in keras for classifying huma
 3. PIL
 
 ### Dataset
- Download the dataset and put it in the root directory.
+ Download the dataset and put it in the root directory. Rename the folder as "dataset".
  https://github.com/bearpaw/clothing-co-parsing
  
 ### Training
