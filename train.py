@@ -29,14 +29,14 @@ params = {'dim': (200, 100),
 # loading img_ids
 img_ids = get_img_ids()
 
-# train test split
-random.shuffle(img_ids)
-train_ids = img_ids[:800]
-val_ids = img_ids[800:]
+# # train test split
+# random.shuffle(img_ids)
+# train_ids = img_ids[:800]
+# val_ids = img_ids[800:]
 
 # Generators
-training_generator = DataGenerator(train_ids, **params)
-validation_generator = DataGenerator(val_ids, **params)
+training_generator = DataGenerator(img_ids, **params)
+validation_generator = DataGenerator(img_ids, **params)
 
 # Design model
 # Create the model
