@@ -63,5 +63,5 @@ model.fit_generator(generator=training_generator,
                     callbacks = callbacks_list)
 
 # Score trained model.
-loss = evaluate_generator(generator, steps=None, callbacks=None, max_queue_size=10, workers=1, use_multiprocessing=False, verbose=0)
+loss = evaluate_generator(validation_generator)
 print(loss)
