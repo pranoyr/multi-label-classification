@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
@@ -10,6 +11,9 @@ from keras.optimizers import SGD
 from keras.callbacks import ModelCheckpoint
 from utils import get_img_ids
 import random
+
+# use this environment flag to change which GPU to use
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # Parameters
 params = {'dim': (200, 100),
