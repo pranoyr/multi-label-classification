@@ -12,7 +12,7 @@ The objective is to train a multi-label classifier in keras for classifying huma
  https://github.com/bearpaw/clothing-co-parsing
  
 ### Training
-Run train.py
+Run train.py.
 The trained model will be saved in the folder snapshots.
 
 ### Inference
