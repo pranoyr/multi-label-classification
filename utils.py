@@ -1,6 +1,5 @@
 import os 
 import numpy as np
-
 def get_img_ids():
 	""" loading the img_ids.
 	"""
