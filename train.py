@@ -47,7 +47,7 @@ model.add(Dense(512, activation='relu', kernel_constraint=maxnorm(3)))
 model.add(Dropout(0.5))
 model.add(Dense(params['n_classes'], activation='sigmoid'))
 # Compile model
-epochs = 2
+epochs = 25
 lrate = 0.01
 decay = lrate/epochs
 sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
@@ -67,5 +67,6 @@ model.fit_generator(generator=training_generator,
                     callbacks = callbacks_list)
 
 # Score trained model.
-loss = evaluate_generator(generator, steps=None, callbacks=None, max_queue_size=10, workers=1, use_multiprocessing=False, verbose=0)
-print(loss)
+scores = model.evaluate_generator(validation_generator)
+print('Test loss:', scores[0])
+print('Test accuracy:', scores[1])
