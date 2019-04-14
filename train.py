@@ -1,3 +1,4 @@
+import os
 import numpy as np
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Activation, Flatten
@@ -10,6 +11,9 @@ from keras.optimizers import SGD
 from keras.callbacks import ModelCheckpoint
 from utils import get_img_ids
 import random
+
+# use this environment flag to change which GPU to use
+os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # Parameters
 params = {'dim': (200, 100),
@@ -43,7 +47,7 @@ model.add(Dense(512, activation='relu', kernel_constraint=maxnorm(3)))
 model.add(Dropout(0.5))
 model.add(Dense(params['n_classes'], activation='sigmoid'))
 # Compile model
-epochs = 25
+epochs = 2
 lrate = 0.01
 decay = lrate/epochs
 sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
@@ -63,5 +67,5 @@ model.fit_generator(generator=training_generator,
                     callbacks = callbacks_list)
 
 # Score trained model.
-loss = evaluate_generator(validation_generator)
+loss = evaluate_generator(generator, steps=None, callbacks=None, max_queue_size=10, workers=1, use_multiprocessing=False, verbose=0)
 print(loss)
