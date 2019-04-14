@@ -49,6 +49,7 @@ decay = lrate/epochs
 sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
 model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy'])
 
+# checkpoint
 checkpoint = ModelCheckpoint('./model.h5', monitor='val_loss', verbose=1, save_best_only=True, mode='min')
 callbacks_list = [checkpoint]
 

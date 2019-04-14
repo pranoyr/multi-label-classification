@@ -1,8 +1,8 @@
 import numpy as np
 import keras
-import cv2
 import os
 import scipy.io
+from PIL import Image
 from utils import *
 
 
@@ -50,9 +50,9 @@ class DataGenerator(keras.utils.Sequence):
         # Generate data
         for i, ID in enumerate(list_IDs_temp):
             # Store sample
-            img_bgr = cv2.imread('./dataset/photos/'+ID+'.jpg')
-            img_bgr = cv2.resize(img_bgr, (self.dim[1], self.dim[0]))
-            X[i, ] = img_bgr
+            img_rgb = Image.open('./dataset/photos/'+ID+'.jpg')
+            img_rgb = img_rgb.resize((self.dim[1], self.dim[0]))
+            X[i, ] = img_rgb
             # Store class
             mat = scipy.io.loadmat('./dataset/annotations/image-level/'+ID+'.mat')
             y.append(mat['tags'][0])
