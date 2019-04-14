@@ -1,16 +1,18 @@
 import os
 import numpy as np
 from keras.models import Sequential
-from keras.layers import Dense, Dropout, Activation, Flatten
-from keras.layers import Conv2D, MaxPooling2D
-from keras.models import Sequential
-from dataset import DataGenerator
-from keras.optimizers import rmsprop
-from keras.constraints import maxnorm
-from keras.optimizers import SGD
-from keras.callbacks import ModelCheckpoint
+from keras.layers.normalization import BatchNormalization
+from keras.layers.convolutional import Conv2D
+from keras.layers.convolutional import MaxPooling2D
+from keras.layers.core import Activation
+from keras.layers.core import Flatten
+from keras.layers.core import Dropout
+from keras.layers.core import Dense
+from keras.optimizers import Adam
+from keras import backend as K
 from utils import get_img_ids
 import random
+from dataset import DataGenerator
 
 # use this environment flag to change which GPU to use
 os.environ["CUDA_VISIBLE_DEVICES"] = "1"
@@ -38,6 +40,8 @@ validation_generator = DataGenerator(val_ids, **params)
 # Design model
 # Create the model
 # CONV => RELU => POOL
+chanDim = -1
+model = Sequential()
 model.add(Conv2D(32, (3, 3), padding="same", input_shape=(200,100,3)))
 model.add(Activation("relu"))
 model.add(BatchNormalization(axis=chanDim))
@@ -69,7 +73,7 @@ model.add(BatchNormalization())
 model.add(Dropout(0.5))
 # use a *softmax* activation for single-label classification
 # and *sigmoid* activation for multi-label classification
-model.add(Dense(classes))
+model.add(Dense(params['n_classes']))
 model.add(Activation('sigmoid'))
 
 # Compile model
