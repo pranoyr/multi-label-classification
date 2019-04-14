@@ -6,6 +6,7 @@ from keras.layers.convolutional import Conv2D
 from keras.layers.convolutional import MaxPooling2D
 from keras.layers.core import Activation
 from keras.layers.core import Flatten
+from keras.callbacks import ModelCheckpoint
 from keras.layers.core import Dropout
 from keras.layers.core import Dense
 from keras.optimizers import Adam
