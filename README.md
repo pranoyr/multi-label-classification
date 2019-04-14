@@ -1,4 +1,4 @@
-# Multi-label classification of human attributes in keras
+# Multi-label classification of human attributes in Keras
 The objective is to train a multi-label classifier in keras for classifying human attributes. 
 
 ## Getting Started
