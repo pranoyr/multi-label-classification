@@ -11,6 +11,8 @@ The objective is to train a multi-label classifier in keras for classifying huma
  Download the dataset and put it in the root directory. Rename the folder as "dataset".
  https://github.com/bearpaw/clothing-co-parsing
  
+ or run ./start.sh
+ 
 ### Training
 Run train.py.
 The trained model will be saved in the folder snapshots.

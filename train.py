@@ -20,7 +20,7 @@ os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 
 # Parameters
 params = {'dim': (200, 100),
-		  'batch_size': 32,
+		  'batch_size': 8,
 		  'n_classes': 59,
 		  'n_channels': 3,
 		  'shuffle': True}
@@ -86,7 +86,7 @@ model.compile(loss="binary_crossentropy", optimizer=opt, metrics=["accuracy"])
 
 # checkpoint
 filepath="human_attribute_model_{epoch:02d}.h5"
-checkpoint = ModelCheckpoint('./snapshots/'+filepath, monitor='val_loss', verbose=1, save_best_only=True, mode='min')
+checkpoint = ModelCheckpoint('./snapshots/'+filepath, monitor='val_loss', verbose=1, save_best_only=False, mode='min')
 callbacks_list = [checkpoint]
 
 # Train model on dataset

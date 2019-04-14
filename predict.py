@@ -4,6 +4,8 @@ from PIL import Image
 import numpy as np
 from utils import pre_process
 
+import scipy.io
+
 # creating names to labels and inverse mapping.
 labels_data = scipy.io.loadmat('./dataset/label_list.mat')
 names_to_labels = {}
@@ -21,5 +23,5 @@ img_batch = pre_process(img_batch)
 # prediction
 results = model.predict(img_batch)
 for i,score in enumerate(results[0]):
- if (score > 0.8):
+ if (score > 0.7):
     print(labels_to_names[i])
