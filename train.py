@@ -47,7 +47,7 @@ model.add(Dense(512, activation='relu', kernel_constraint=maxnorm(3)))
 model.add(Dropout(0.5))
 model.add(Dense(params['n_classes'], activation='sigmoid'))
 # Compile model
-epochs = 25
+epochs = 2
 lrate = 0.01
 decay = lrate/epochs
 sgd = SGD(lr=lrate, momentum=0.9, decay=decay, nesterov=False)
