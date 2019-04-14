@@ -18,7 +18,9 @@ img_rgb  = Image.open('./dataset/photos/1005.jpg')
 img_rgb = img_rgb.resize((100, 200))
 
 img_batch = np.expand_dims(img_rgb, axis=0)
-
+img_batch = pre_process(img_batch)
 
 results = model.predict(img_batch)
-idxs = np.argsort(results[0])[::-1][:2]
+for i,score in enumerate(results[0]):
+ if (score > 0.8):
+    print(labels_to_names[i])
